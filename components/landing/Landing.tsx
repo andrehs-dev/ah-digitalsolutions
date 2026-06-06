@@ -493,7 +493,7 @@ function Process() {
 function About() {
   const badges = [
     { n: "24h–7d", l: "Você escolhe o prazo" },
-    { n: "R$50", l: "A partir de" },
+    { n: "+12", l: "Seguimentos atendidos" },
     { n: "100%", l: "Satisfação garantida" },
     { n: "🇧🇷", l: "Todo o Brasil" },
   ];
@@ -502,14 +502,15 @@ function About() {
       <div className="container-x grid lg:grid-cols-2 gap-12 items-center">
         <div className="reveal">
           {/* TODO: substituir por foto real do André */}
-          <div className="aspect-square max-w-md rounded-3xl border border-border overflow-hidden
-                bg-gradient-to-br from-purple-900/40 via-purple-800/20 to-black">
+          <div className="aspect-square max-w-md rounded-3xl border border-border overflow-hidden p-4
+      bg-gradient-to-br from-purple-900/40 via-purple-800/20 to-black">
             <img
               src="/Copilot_20260528_162036.png"
               alt="André Henrique - AH Digital Solutions"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover rounded-2xl"
             />
           </div>
+
         </div>
         <div className="reveal">
           <span className="text-xs uppercase tracking-[0.18em] text-primary font-semibold">Sobre</span>
