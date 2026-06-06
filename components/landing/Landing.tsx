@@ -507,7 +507,7 @@ function About() {
             <img
               src="/Copilot_20260528_162036.png"
               alt="André Henrique - AH Digital Solutions"
-              className="w-full h-full object-cover rounded-2xl"
+              className="w-full h-full object-cover rounded-2xl object-top"
             />
           </div>
 
