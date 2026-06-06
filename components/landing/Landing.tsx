@@ -78,11 +78,10 @@ function Navbar() {
   }, []);
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
           ? "bg-background/75 backdrop-blur-xl border-b border-border"
           : "bg-transparent"
-      }`}
+        }`}
     >
       <div className="container-x flex items-center justify-between h-16">
         <button onClick={() => scrollToId("top")} className="flex items-center gap-2 group">
@@ -503,8 +502,12 @@ function About() {
       <div className="container-x grid lg:grid-cols-2 gap-12 items-center">
         <div className="reveal">
           {/* TODO: substituir por foto real do André */}
-          <div className="aspect-square max-w-md rounded-3xl border border-border bg-gradient-to-br from-primary/20 to-card flex items-center justify-center">
-            <span className="font-display font-extrabold text-8xl text-primary/40">AH</span>
+          <div className="aspect-square max-w-md rounded-3xl border border-border overflow-hidden">
+            <img
+              src="/Copilot_20260528_162036.png"
+              alt="André Henrique - AH Digital Solutions"
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
         <div className="reveal">
