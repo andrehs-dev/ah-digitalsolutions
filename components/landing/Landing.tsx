@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 
 const WA = "https://wa.me/5519993174538";
 const waLink = (text: string) => `${WA}?text=${encodeURIComponent(text)}`;
+const BLOG_URL = "https://ah-digital-blog.vercel.app";
 
 const NAV = [
   { id: "servicos", label: "Serviços" },
@@ -103,12 +104,22 @@ function Navbar() {
             </button>
           ))}
         </nav>
-        <button
-          onClick={() => scrollToId("contato")}
-          className="hidden md:inline-flex items-center justify-center rounded-full bg-primary hover:bg-primary/90 text-primary-foreground px-5 py-2 text-sm font-medium transition-colors"
-        >
-          Solicitar Proposta
-        </button>
+        <div className="hidden md:flex items-center gap-3">
+          <a
+            href={BLOG_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center justify-center rounded-full border border-border hover:border-primary text-foreground px-4 py-2 text-sm font-medium transition-colors"
+          >
+            Blog
+          </a>
+          <button
+            onClick={() => scrollToId("contato")}
+            className="inline-flex items-center justify-center rounded-full bg-primary hover:bg-primary/90 text-primary-foreground px-5 py-2 text-sm font-medium transition-colors"
+          >
+            Solicitar Proposta
+          </button>
+        </div>
         <button
           className="md:hidden p-2 text-foreground"
           onClick={() => setOpen((v) => !v)}
@@ -134,6 +145,15 @@ function Navbar() {
                 {n.label}
               </button>
             ))}
+            <a
+              href={BLOG_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="text-left py-2 text-foreground"
+              onClick={() => setOpen(false)}
+            >
+              📖 Blog
+            </a>
             <button
               onClick={() => {
                 setOpen(false);
@@ -187,6 +207,14 @@ function Hero() {
             >
               Ver Projetos
             </button>
+            <a
+              href={BLOG_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center rounded-full border border-border hover:border-primary text-foreground px-7 py-3.5 text-sm font-semibold transition-colors"
+            >
+              📖 Blog
+            </a>
           </div>
           <div className="mt-8 flex flex-wrap gap-2">
             {[
@@ -858,6 +886,11 @@ function Footer() {
                 </button>
               </li>
             ))}
+            <li>
+              <a href={BLOG_URL} target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">
+                Blog
+              </a>
+            </li>
           </ul>
         </div>
         <div>
