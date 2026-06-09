@@ -408,6 +408,27 @@ function Services() {
 const PROJECTS = [
   {
     segment: "💈 Barbearia",
+    name: "Barbearia do Bomba",
+    desc: "Site completo com agendamento, galeria, barbeiros e identidade urbana.",
+    tech: ["React", "TanStack Start", "Tailwind"],
+    url: "https://barbeariadobomba.netlify.app",
+  },
+  {
+    segment: "🏍️ Motos",
+    name: "Cebola Motos",
+    desc: "Landing page moderna para loja de motos com Catálogo e WhatsApp.",
+    tech: ["React", "TanStack Start", "Tailwind"],
+    url: "https://tourmaline-pothos-991cd5.netlify.app",
+  },
+  {
+    segment: "💪 Fitness",
+    name: "Personal Leonardo",
+    desc: "Site de alta conversão para personal trainer com depoimentos e contato direto.",
+    tech: ["React", "TanStack Start", "Tailwind"],
+    url: "https://dreamy-belekoy-f9bfa6.netlify.app",
+  },
+  {
+    segment: "💈 Barbearia",
     name: "Barbearia Zavalha & Co.",
     desc: "Site institucional com agendamento e identidade visual marcante.",
     tech: ["HTML", "CSS", "JavaScript"],
@@ -419,13 +440,6 @@ const PROJECTS = [
     desc: "Landing page para captação de clientes via WhatsApp.",
     tech: ["HTML", "Tailwind", "JS"],
     url: "https://andrehs-dev.github.io/portfolio3/",
-  },
-  {
-    segment: "💪 Fitness",
-    name: "Personal Trainer · Unissex",
-    desc: "Site de alta conversão para personal trainer.",
-    tech: ["HTML", "CSS", "Animações"],
-    url: "https://andrehs-dev.github.io/portfolio2/",
   },
   {
     segment: "🏠 Organização",
