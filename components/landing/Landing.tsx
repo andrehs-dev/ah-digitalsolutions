@@ -425,7 +425,7 @@ const PROJECTS = [
     name: "Personal Leonardo",
     desc: "Site de alta conversão para personal trainer com depoimentos e contato direto.",
     tech: ["React", "TanStack Start", "Tailwind"],
-    url: "https://dreamy-belekoy-f9bfa6.netlify.app",
+    url: "https://personal-leonardo.vercel.app",
   },
   {
     segment: "💈 Barbearia",
