@@ -418,7 +418,7 @@ const PROJECTS = [
     name: "Cebola Motos",
     desc: "Landing page moderna para loja de motos com Catálogo e WhatsApp.",
     tech: ["React", "TanStack Start", "Tailwind"],
-    url: "https://tourmaline-pothos-991cd5.netlify.app",
+    url: "https://cebola-motos.pages.dev",
   },
   {
     segment: "💪 Fitness",
