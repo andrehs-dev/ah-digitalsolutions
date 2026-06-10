@@ -411,7 +411,7 @@ const PROJECTS = [
     name: "Barbearia do Bomba",
     desc: "Site completo com agendamento, galeria, barbeiros e identidade urbana.",
     tech: ["React", "TanStack Start", "Tailwind"],
-    url: "https://barbeariadobomba.netlify.app",
+    url: "https://barbearia-do-bomba.pages.dev",
   },
   {
     segment: "🏍️ Motos",
