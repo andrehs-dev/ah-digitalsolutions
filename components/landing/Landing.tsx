@@ -456,6 +456,13 @@ const PROJECTS = [
     tech: ["HTML", "Tailwind", "JS"],
     url: "https://andrehs-dev.github.io/portfolio4/",
   },
+  {
+    segment: "🛵 Entregas",
+    name: "Motoboys Express",
+    desc: "Landing page para serviços de entrega com galeria, orçamento e WhatsApp.",
+    tech: ["React", "TanStack Start", "Tailwind"],
+    url: "https://modelo-motoboys.pages.dev",
+  },
 ];
 
 function CarouselArrow({ direction, onClick, disabled }: { direction: "prev" | "next"; onClick: () => void; disabled: boolean }) {
