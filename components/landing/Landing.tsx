@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, useCallback, type FormEvent } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 
 const WA = "https://wa.me/5519993174538";
 const waLink = (text: string) => `${WA}?text=${encodeURIComponent(text)}`;
@@ -414,6 +415,13 @@ const PROJECTS = [
     url: "https://barbearia-do-bomba.pages.dev",
   },
   {
+    segment: "💈 Barbearia",
+    name: "Barbearia do Bomba — Urban",
+    desc: "Versão urban/street com visual neon e agendamento integrado.",
+    tech: ["React", "TanStack Start", "Tailwind"],
+    url: "https://bomba-urban.pages.dev",
+  },
+  {
     segment: "🏍️ Motos",
     name: "Cebola Motos",
     desc: "Landing page moderna para loja de motos com Catálogo e WhatsApp.",
@@ -450,7 +458,47 @@ const PROJECTS = [
   },
 ];
 
+function CarouselArrow({ direction, onClick, disabled }: { direction: "prev" | "next"; onClick: () => void; disabled: boolean }) {
+  return (
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      className={`absolute top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-background/90 border border-border shadow-lg flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground transition-all disabled:opacity-30 disabled:cursor-not-allowed ${direction === "prev" ? "-left-4" : "-right-4"}`}
+      aria-label={direction === "prev" ? "Anterior" : "Próximo"}
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        {direction === "prev"
+          ? <><path d="M15 18l-6-6 6-6" /></>
+          : <><path d="M9 18l6-6-6-6" /></>
+        }
+      </svg>
+    </button>
+  );
+}
+
 function Projects() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ align: "start", loop: false, dragFree: true });
+  const [prevDisabled, setPrevDisabled] = useState(true);
+  const [nextDisabled, setNextDisabled] = useState(false);
+
+  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    const onSelect = () => {
+      setPrevDisabled(!emblaApi.canScrollPrev());
+      setNextDisabled(!emblaApi.canScrollNext());
+    };
+    onSelect();
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+    return () => {
+      emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onSelect);
+    };
+  }, [emblaApi]);
+
   return (
     <section id="projetos" className="py-24 md:py-32 bg-card/30 border-y border-border">
       <div className="container-x">
@@ -463,37 +511,43 @@ function Projects() {
             Projetos de demonstração — em breve, casos reais de clientes.
           </p>
         </div>
-        <div className="mt-14 grid md:grid-cols-2 gap-5">
-          {PROJECTS.map((p) => (
-            <a
-              key={p.name}
-              href={p.url}
-              target="_blank"
-              rel="noreferrer"
-              className="reveal group rounded-2xl border border-border bg-background p-7 hover:border-primary/50 hover:-translate-y-1 transition-all"
-            >
-              <div className="flex items-center gap-2 flex-wrap">
-                <span className="text-xs border border-border rounded-full px-3 py-1 text-muted-foreground">
-                  {p.segment}
-                </span>
-                <span className="text-xs bg-primary/10 text-primary rounded-full px-3 py-1 font-medium">
-                  Demonstração
-                </span>
-              </div>
-              <h3 className="mt-5 font-display font-bold text-2xl text-foreground">{p.name}</h3>
-              <p className="mt-3 text-sm text-muted-foreground">{p.desc}</p>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {p.tech.map((t) => (
-                  <span key={t} className="text-xs text-muted-foreground border border-border rounded-full px-2.5 py-1">
-                    {t}
-                  </span>
-                ))}
-              </div>
-              <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary group-hover:gap-3 transition-all">
-                Ver projeto <span aria-hidden>→</span>
-              </div>
-            </a>
-          ))}
+        <div className="mt-14 relative">
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex gap-5">
+              {PROJECTS.map((p) => (
+                <a
+                  key={p.name}
+                  href={p.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group rounded-2xl border border-border bg-background p-7 hover:border-primary/50 hover:-translate-y-1 transition-all min-w-[340px] md:min-w-[400px] flex-shrink-0"
+                >
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-xs border border-border rounded-full px-3 py-1 text-muted-foreground">
+                      {p.segment}
+                    </span>
+                    <span className="text-xs bg-primary/10 text-primary rounded-full px-3 py-1 font-medium">
+                      Demonstração
+                    </span>
+                  </div>
+                  <h3 className="mt-5 font-display font-bold text-2xl text-foreground">{p.name}</h3>
+                  <p className="mt-3 text-sm text-muted-foreground">{p.desc}</p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {p.tech.map((t) => (
+                      <span key={t} className="text-xs text-muted-foreground border border-border rounded-full px-2.5 py-1">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary group-hover:gap-3 transition-all">
+                    Ver projeto <span aria-hidden>→</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+          <CarouselArrow direction="prev" onClick={scrollPrev} disabled={prevDisabled} />
+          <CarouselArrow direction="next" onClick={scrollNext} disabled={nextDisabled} />
         </div>
       </div>
     </section>
